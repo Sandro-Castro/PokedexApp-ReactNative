@@ -1,8 +1,11 @@
-import { StyleSheet, Text, View, Image, Pressable, } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, FlatList, } from 'react-native';
 import * as React from 'react';
 import { Searchbar, IconButton} from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { Link } from "expo-router";
+import { useEffect, useState,  } from 'react';
+import {buscarPokemon} from "./services/api"
+import { listaItemPokemon } from './types/pokemon';
 
 
 const PesquisarPokemom = () => {
@@ -18,6 +21,29 @@ const PesquisarPokemom = () => {
 };
 
 export default function Index() {
+  const [pokemon, setPokemon] = useState<listaItemPokemon[]>([]);
+  useEffect(( )=> {
+    const carregarPokemon = async () => {
+      const dados = await buscarPokemon();
+      const buscarDadosPokemon: listaItemPokemon[] = await Promise.all(
+        dados.map (async (item: {name: string; url: string}) => {
+          const resposta = await fetch(item.url);
+          const detalhes = await resposta.json();
+
+          return {
+            name: item.name,
+            image: detalhes.sprites.front_default,
+          };
+        })
+      );
+      setPokemon(buscarDadosPokemon);
+
+    };
+    carregarPokemon();
+  }, [])
+
+  
+
   return (
     <View style={styles.container}>
       <View style={styles.cabecalho}>
@@ -33,31 +59,37 @@ export default function Index() {
 
       <View style = {styles.listaPokemon}>
           <Text style = {styles.TextoListaPokemon}>Lista de Pokemon</Text>
+          
+          <FlatList
+            data = {pokemon}
+            keyExtractor={(item) => item.name}
 
-          <View style = {styles.carta}>
-            <View style = {styles.infoCarta}>
-              <Image 
-              source={require('../app/assets/images/bulbasaur.png')}
-              />
-              <View>
-                <Text>#001</Text>
-                <Text>Bulbassaur</Text>
-              </View>    
-            </View> 
-            <Link href={{
-              pathname: "/pokemon/[id]",
-              params: {
-                id: "name"
-              }
-            }}>
-              <IconButton
-                icon="chevron-right" 
-                size={40} 
-                
-                onPress={() => console.log('Seta clicada!')} 
-                />
-              </Link>
-          </View>
+            renderItem={({item, index})=>(
+            <View style = {styles.carta}>
+              <View style = {styles.infoCarta}>
+                <Image width = {50} height = {60} source={{uri: item.image}} />
+                <View>
+                  <Text>#{index + 1}</Text>
+                  <Text>{item.name}</Text>
+                </View>    
+              </View> 
+              <Link href={{
+                pathname: "/pokemon/[id]",  
+                params: {
+                  id: 2
+                }
+              }}>
+                <IconButton
+                  icon="chevron-right" 
+                  size={40} 
+                  
+                  onPress={() => console.log('Seta clicada!')} 
+                  />
+                </Link>
+            </View>)}
+          />
+
+          
       </View>
 
       <View style = {styles.rodape}>
@@ -137,9 +169,10 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     padding: 15,
-    elevation: 7,
+    elevation: 4,
     justifyContent: "space-between",
     borderRadius: 4,
+    marginBottom: 5,
 
   },
   infoCarta:{
