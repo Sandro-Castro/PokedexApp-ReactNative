@@ -54,7 +54,7 @@ export default function Index() {
         />
       </View>
 
-    <Text style = {styles.textLogo}>Realize a busca pelos Pokémon pelo nome ou usando o número do Pokédex Nacional</Text>
+    <Text style = {styles.textoLogo}>Realize a busca pelos Pokémon pelo nome ou usando o número do Pokédex Nacional</Text>
       <PesquisarPokemom />
 
       <View style = {styles.listaPokemon}>
@@ -67,7 +67,7 @@ export default function Index() {
             renderItem={({item, index})=>(
             <View style = {styles.carta}>
               <View style = {styles.infoCarta}>
-                <Image width = {50} height = {60} source={{uri: item.image}} />
+                <Image width = {80} height = {80} source={{uri: item.image}} />
                 <View>
                   <Text>#{index + 1}</Text>
                   <Text>{item.name}</Text>
@@ -126,7 +126,7 @@ export const styles = StyleSheet.create({
     right:10, 
 
   },
-  textLogo:{
+  textoLogo:{
     fontSize: 16,
     paddingHorizontal: 25,
     paddingTop: 20,
