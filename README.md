@@ -1,50 +1,47 @@
-# Welcome to your Expo app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# Pokedex Mobile - Projeto de Estudo 🎓
 
-## Get started
 
-1. Install dependencies
+Um app simples de Pokedex feito com React Native/Expo para praticar conceitos de desenvolvimento mobile.
 
-   ```bash
-   npm install
-   ```
+## 🚀 Funcionalidades Básicas
 
-2. Start the app
+- Listagem de Pokémon com paginação
+- Visualização básica de detalhes
+- Busca por nome ou número
+- Integração com a [PokeAPI](https://pokeapi.co/)
+- Layout responsivo para diferentes dispositivos
 
-   ```bash
-    npx expo start
-   ```
+## ⚡ Como Executar
 
-In the output, you'll find options to open the app in a
+1. Clone o repositório -> git clone https://github.com/seu-usuario/pokedex-mobile.git
+   
+Instale as dependências
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+bash
+npm install
+Inicie o servidor de desenvolvimento
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+bash
+npx expo start
+Escaneie o QR code com o app Expo Go ou use um emulador
 
-## Get a fresh project
+🛠 Tecnologias Utilizadas
+React Native
 
-When you're ready, run:
+Expo
 
-```bash
-npm run reset-project
-```
+Axios para requisições HTTP
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+React Navigation (opcional, se usado)
 
-## Learn more
+Componentes básicos do React Native
 
-To learn more about developing your project with Expo, look at the following resources:
+📚 O Que Aprendi/Pratiquei
+Consumo de API REST
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Gerenciamento de estado básico
 
-## Join the community
+Navegação entre telas
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Debugging em React Native
